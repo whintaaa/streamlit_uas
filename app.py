@@ -195,7 +195,7 @@ with implementation:
     gender_male = 1 if gender == 'Laki-Laki' else 0
 
     # preprocessing
-    input_data = pd.DataFrame([[height, weight, gender_female, gender_male]], columns=X.columns)
+    input_data = np.array([[height, weight, gender_female, gender_male]])
     input_data_scaled = scaler.transform(input_data)
 
     # PCA
