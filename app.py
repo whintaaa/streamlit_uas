@@ -19,7 +19,6 @@ from sklearn.ensemble import RandomForestClassifier
 # display
 st.set_page_config(page_title="WhintaVP", page_icon='icon.png')
 
-@st.cache_data()
 def progress():
     with st.spinner('Wait for it...'):
         time.sleep(5)
