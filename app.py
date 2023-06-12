@@ -35,7 +35,7 @@ dataframe, preporcessing, modeling, implementation = st.tabs(
 label = ['Extremely Weak', 'Weak', 'Normal', 'Overweight', 'Obesity', 'Extreme Obesity']
 
 with dataframe:
-    progress
+    progress()
     st.write('Dataset BMI diambil dari https://www.kaggle.com/, dibawah ini link untuk dataset:')
     url = "https://www.kaggle.com/datasets/yersever/500-person-gender-height-weight-bodymassindex"
     st.markdown(f'[Dataset BMI]({url})')
