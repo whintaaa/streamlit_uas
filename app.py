@@ -188,6 +188,12 @@ with modeling:
 
 
 with implementation:
+    st.write('Pada modeling bisa dilihat bahwa akurasi tertinggi / terbaik adalah Multi-layer ANN dengan Backpropagation yang tanpa pca')
+    ann_bp = joblib.load('ann_bp.pkl')
+    y_pred_annbp = ann_bp.predict(X_test)
+    akurasi_annbp = accuracy_score(y_test, y_pred_annbp)
+    st.success(f'akurasi terhadap data test = {akurasi_annbp}')
+    st.write('Berikut untuk Implementasinya :')
     # height
     height = st.number_input('Tinggi', value=174)
     # weight
@@ -201,39 +207,31 @@ with implementation:
     input_data = np.array([[height, weight, gender_female, gender_male]])
     input_data_scaled = scaler.transform(input_data)
 
-    # PCA
-    input_data_pca = pca.transform(input_data_scaled)
-
+    model_selected2 = st.selectbox('Model terbaik', ['ANN BP'])
     # model selection
-    model_selected = st.selectbox('Pilih Model', ['KNN', 'Naive Bayes', 'Decision Tree', 'ANN BP'])
+    model_selected = st.selectbox('Pilih Model lainya', ['KNN', 'Naive Bayes', 'Decision Tree'])
 
     if st.button('Predict'):
+        if model_selected2 == 'ANN BP':
+            pred2 = ann_bp.predict(input_data_scaled)[0]
         if model_selected == 'KNN':
             pred = knn.predict(input_data_scaled)[0]
-            pred_pca = knn_pca.predict(input_data_pca)[0]
         elif model_selected == 'Naive Bayes':
             pred = naive_bayes.predict(input_data_scaled)[0]
-            pred_pca = naive_bayes_pca.predict(input_data_pca)[0]
         elif model_selected == 'Decision Tree':
             pred = d3.predict(input_data_scaled)[0]
-            pred_pca = d3_pca.predict(input_data_pca)[0]
-        elif model_selected == 'ANN BP':
-            pred = ann_bp.predict(input_data_scaled)[0]
-            pred_pca = ann_bp_pca.predict(input_data_pca)[0]
 
+        label_pred2 = label[pred2]
         label_pred = label[pred]
-        label_pred_pca = label[pred_pca]
 
         st.write('---')
         st.write('Hasil Prediksi')
         st.write('---')
-
-        st.write(f'Prediksi BMI dengan {model_selected} (Tanpa PCA)')
-        st.write(f'Prediksi BMI: {label_pred}')
+        st.write(f'Prediksi BMI dengan {model_selected2} / model terbaik')
+        st.write(f'Prediksi BMI: {label_pred2}')
         st.write('---')
-
-        st.write(f'Prediksi BMI dengan {model_selected} (Dengan PCA)')
-        st.write(f'Prediksi BMI: {label_pred_pca}')
+        st.write(f'Prediksi BMI lainnya dengan {model_selected}')
+        st.write(f'Prediksi BMI: {label_pred}')
         st.write('---')
 
 
