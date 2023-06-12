@@ -24,24 +24,26 @@ def progress():
         time.sleep(5)
 
 st.title("UAS PENDATA B")
-st.write("Analisis dan Prediksi pada dataset BMI (Body Mass Index).")
+st.write("Aplikasi Prediksi pada dataset BMI (Body Mass Index).")
 st.write('Nama : Whinta Virginia Putri')
 st.write('NIM : 210411100047')
 st.write('Pendata B')
 
 dataframe, preporcessing, modeling, implementation = st.tabs(
-    ["Data BMI", "Prepocessing dan PCA (Principal component analysis)", "Modeling", "Implementation"])
+    ["Data BMI", "Prepocessing", "Modeling", "Implementation"])
 
 label = ['Extremely Weak', 'Weak', 'Normal', 'Overweight', 'Obesity', 'Extreme Obesity']
 
 with dataframe:
-    progress()
+    progress
+    st.write('Dataset BMI diambil dari https://www.kaggle.com/, dibawah ini link untuk dataset:')
     url = "https://www.kaggle.com/datasets/yersever/500-person-gender-height-weight-bodymassindex"
     st.markdown(f'[Dataset BMI]({url})')
     st.write('Height and Weight random generated, Body Mass Index Calculated')
+    st.write('Untuk type data dari dataset ini adalah multivariat / campuran. Pada dataset ini berisi data kategorikal dan numerik')
+    st.write('Dataset ini berisi tentang dataset BMI.')
     st.write('BMI (Body Mass Index) adalah sebuah metode yang digunakan untuk mengukur proporsi antara berat badan dan tinggi badan seseorang.')
     st.write('BMI biasanya digunakan sebagai indikator kasar untuk menentukan apakah seseorang memiliki berat badan yang sehat atau tidak.')
-
     dataset, ket = st.tabs(['Dataset', 'Keterangan Dataset'])
     with ket:
         st.write("""
@@ -58,6 +60,7 @@ with dataframe:
             * 5 = Extreme Obesity
         """)
     with dataset:
+        st.write('Pada dataset ini memiliki 3 fitur: Gender, Height, dan Weight. serta target yaitu Index')
         dt = pd.read_csv('https://raw.githubusercontent.com/whintaaa/iris/main/500_Person_Gender_Height_Weight_Index.csv')
         st.dataframe(dt)
         # pisahkan fitur dan label
@@ -69,6 +72,7 @@ with preporcessing:
     scaler = joblib.load("scaled.pkl")
     st.write('One Hot Prepocessing')
     st.write("'One-hot Processing' adalah suatu teknik dalam prapemrosesan data yang digunakan untuk mengubah variabel kategorikal menjadi representasi numerik biner. Tujuannya adalah untuk memungkinkan model atau algoritma pembelajaran mesin untuk mengolah dan memahami variabel kategorikal sebagai fitur dalam analisis atau pemodelan.")
+    st.write('One Hot Prepocessing digunakan untuk kolom Gender')
     df = pd.get_dummies(X, prefix='Gender')
     scaled = scaler.fit_transform(df)
     X = pd.DataFrame(scaled, columns=df.columns)
