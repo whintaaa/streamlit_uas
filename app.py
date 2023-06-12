@@ -82,7 +82,6 @@ with preporcessing:
     st.write('Tujuannya adalah untuk mengidentifikasi pola dan struktur utama (komponen utama) dalam dataset dengan mengubah variabel asli menjadi kombinasi linear baru yang disebut komponen utama.')
     pca = PCA(n_components=2)
     X_pca = pca.fit_transform(X)
-    st.write("Variance Ratio:", pca.explained_variance_ratio_)
     st.write("Principal Components:")
     st.dataframe(pd.DataFrame(X_pca, columns=["PC1", "PC2"]))
 
