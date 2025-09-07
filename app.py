@@ -153,8 +153,6 @@ st.markdown("""
 <div class="info-box">
     <h3>🎓 Informasi Aplikasi</h3>
     <p><strong>Nama:</strong> Whinta Virginia Putri</p>
-    <p><strong>NIM:</strong> 210411100047</p>
-    <p><strong>Kelas:</strong> Pendata B</p>
     <p><strong>Deskripsi:</strong> Aplikasi prediksi BMI menggunakan Machine Learning untuk menentukan kategori berat badan berdasarkan tinggi, berat, dan jenis kelamin.</p>
 </div>
 """, unsafe_allow_html=True)
